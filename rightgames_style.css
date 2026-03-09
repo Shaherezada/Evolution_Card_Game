@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700&subset=latin,cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic');
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #f2f2f2;
+}
+
+/* заимствовано из селектора h2 оригинального сайта */
+.calc-title {
+    font-size: 1.8em;
+    font-family: 'Noto Serif',serif;
+    color: #8e3235;
+    margin-bottom: 0.5em;
+    margin-top: 0.1em;
+    border-top: 2px solid #931417; /* акцентная линия как у #navigation на оригинальном сайте*/
+}
+
+.result {
+    width: 220px;
+    height: 50px;
+    margin-bottom: 15px;         /* отступ снизу */
+    padding-right: 10px;         /* выступ справа */
+    text-align: right;           /* примагнитим текст к правой стороне */
+    background: #f5d7ba;
+    color: #222;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 2.1em;
+    line-height: 50px;           /* для центрирования текста по вертикали */
+    border-radius: 5px;
+}
+
+.my-btn {
+    margin-right: 5px;           /* задаем отступ от кнопки справа */
+    margin-top: 5px;             /* задаем отступ от кнопки сверху*/
+    width: 50px;                 /* задаем ширину кнопки */
+    height: 50px;                /* задаем высоту кнопки */
+    border: none;                /* отключаем обводку */
+    cursor: pointer;             /* при наведении на кнопку курсор будет изменен
+                                  со стрелки на 'указательный палец' */
+    user-select: none;           /* отключаем возможность выделить текст внутри кнопки */
+
+    /* заимствовано из класса .login-button оригинального сайта */
+    border-radius: 3px;
+    background-color: #931417;
+    color: #f5d7ba; 
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 14px;
+}
+
+.my-btn:hover {
+    background: #a34142;
+    color: #ffffff;
+}
+
+.my-btn:active {
+    filter: brightness(130%);
+}
+
+.my-btn.execute {
+    width: 110px; 
+    border-radius: 3px;
+}
+
+.primary_trait {
+    background: #8e3235; 
+}
+
+.utility_trait {
+    background: #4d4d4d; 
+}
