@@ -1,0 +1,42 @@
+$kind: http-request
+name: Create a valid card
+method: POST
+url: '{{baseUrl}}/cards'
+order: 1000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Тест",
+      "nameEn": "Test Card",
+      "type": "Свойство",
+      "foodCost": 1,
+      "effect": "Test effect description."
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 201", function () {
+        pm.response.to.have.status(201);
+      });
+      
+      pm.test("Response has an 'id' field (number)", function () {
+        pm.expect(pm.response.json()).to.have.property('id');
+        pm.expect(pm.response.json().id).to.be.a('number');
+      });
+      
+      pm.test("Response name equals 'Тест'", function () {
+        pm.expect(pm.response.json().name).to.equal('Тест');
+      });
+      
+      pm.test("Response nameEn equals 'Test Card'", function () {
+        pm.expect(pm.response.json().nameEn).to.equal('Test Card');
+      });
+      
+      pm.test("Save the returned id to createdCardId collection variable", function () {
+        pm.collectionVariables.set("createdCardId", pm.response.json().id);
+      });

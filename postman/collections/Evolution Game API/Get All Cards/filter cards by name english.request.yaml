@@ -1,0 +1,23 @@
+$kind: http-request
+name: Filter cards by name (English)
+method: GET
+url: '{{baseUrl}}/cards?name=burrowing'
+order: 2000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", function () {
+        pm.response.to.have.status(200);
+      });
+      
+      pm.test("Response is an array", function () {
+        pm.expect(pm.response.json()).to.be.an('array');
+      });
+      
+      pm.test("Every returned card's nameEn contains 'burrowing' (case-insensitive)", function () {
+        const cards = pm.response.json();
+        cards.forEach(card => {
+          pm.expect(card.nameEn.toLowerCase()).to.include('burrowing');
+        });
+      });
