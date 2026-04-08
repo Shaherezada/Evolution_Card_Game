@@ -1,85 +1,80 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700&subset=latin,cyrillic');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic');
 
+/* --- Переопределение цвета Bootstrap primary под тему rightgames.ru --- */
+.btn-primary {
+    --bs-btn-color: #f5d7ba;
+    --bs-btn-bg: #931417;
+    --bs-btn-border-color: #931417;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: #a34142;
+    --bs-btn-hover-border-color: #a34142;
+    --bs-btn-active-bg: #7a1013;
+    --bs-btn-active-border-color: #7a1013;
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-disabled-bg: #931417;
+    --bs-btn-disabled-border-color: #931417;
+}
+
+/* --- Общие стили --- */
 body {
-    margin: 0;
-    padding: 20px;
     background-color: #f2f2f2;
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: #222;
+}
+
+/* --- Хедер --- */
+.app-header {
+    background-color: #931417;
+    color: #ffffff;
+    padding: 14px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* заимствовано из селектора h2 оригинального сайта */
-.calc-title {
-    font-size: 1.8em;
-    font-family: 'Noto Serif',serif;
-    color: #8e3235;
-    margin-bottom: 0.5em;
-    margin-top: 0.1em;
-    border-top: 2px solid #931417; /* акцентная линия как у #navigation на оригинальном сайте*/
+.header-title {
+    font-family: 'Noto Serif', serif;
+    font-size: 1.6em;
+    margin: 0;
+    border-top: 2px solid #f5d7ba;
+    padding-top: 4px;
 }
 
-.result {
-    width: 220px;
-    height: 50px;
-    margin-bottom: 15px;         /* отступ снизу */
-    padding-right: 10px;         /* выступ справа */
-    text-align: right;           /* примагнитим текст к правой стороне */
-    background: #f5d7ba;
-    color: #222;
-    font-family: 'Open Sans',sans-serif;
-    font-size: 2.1em;
-    line-height: 50px;           /* для центрирования текста по вертикали */
-    border-radius: 5px;
+/* --- Сетка карточек (плиткой, выравнивание по левому краю) --- */
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 16px;
 }
 
-.my-btn {
-    margin-right: 5px;           /* задаем отступ от кнопки справа */
-    margin-top: 5px;             /* задаем отступ от кнопки сверху*/
-    width: 50px;                 /* задаем ширину кнопки */
-    height: 50px;                /* задаем высоту кнопки */
-    border: none;                /* отключаем обводку */
-    cursor: pointer;             /* при наведении на кнопку курсор будет изменен
-                                  со стрелки на 'указательный палец' */
-    user-select: none;           /* отключаем возможность выделить текст внутри кнопки */
-
-    /* заимствовано из класса .login-button оригинального сайта */
-    border-radius: 3px;
-    background-color: #931417;
-    color: #f5d7ba; 
-    font-family: 'Open Sans',Arial,sans-serif;
-    font-size: 14px;
+/* --- Карточка --- */
+.evolution-card {
+    width: 210px;
+    background: #ffffff;
 }
 
-.my-btn:hover {
-    background: #a34142;
-    color: #ffffff;
+.evolution-card .card-img-top {
+    height: 200px;
+    object-fit: contain;
+    background-color: #f5d7ba; /* бежевый фон под изображением карты */
+    padding: 6px;
 }
 
-.my-btn:active {
-    filter: brightness(130%);
+.evolution-card .card-title {
+    font-family: 'Noto Serif', serif;
+    font-size: 1em;
+    color: #931417;
 }
 
-.my-btn.execute {
-    width: 110px; 
-    border-radius: 3px;
-}
-
-.primary_trait {
-    background: #8e3235; 
-}
-
-.utility_trait {
-    background: #4d4d4d; 
-}
-
-.icon-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    vertical-align: top;
-}
-
-.icon-btn img {
-    width: 48px;
-    height: 48px;
+/* --- Страница подробнее --- */
+.detail-img {
+    max-height: 360px;
+    object-fit: contain;
+    background-color: #f5d7ba;
+    padding: 12px;
+    width: 100%;
 }
