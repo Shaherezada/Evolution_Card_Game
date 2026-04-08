@@ -1,0 +1,27 @@
+$kind: http-request
+name: Create card missing effect returns 400
+method: POST
+url: '{{baseUrl}}/cards'
+order: 3000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "NoEffect",
+      "nameEn": "No Effect",
+      "type": "Свойство"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 400", function () {
+        pm.response.to.have.status(400);
+      });
+      
+      pm.test("Response body has an 'error' field", function () {
+        pm.expect(pm.response.json()).to.have.property('error');
+      });

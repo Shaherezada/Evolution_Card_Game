@@ -1,0 +1,25 @@
+$kind: http-request
+name: Update non-existent card returns 404
+method: PATCH
+url: '{{baseUrl}}/cards/99999'
+order: 3000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "foodCost": 3
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 404", function () {
+        pm.response.to.have.status(404);
+      });
+      
+      pm.test("Response body has an 'error' field", function () {
+        pm.expect(pm.response.json()).to.have.property('error');
+      });
