@@ -2,7 +2,6 @@ import { HeaderComponent }  from "../../components/header/index.js";
 import { FilterComponent }  from "../../components/filter/index.js";
 import { CardItemComponent } from "../../components/card-item/index.js";
 import { CardDetailPage }   from "../card-detail/index.js";
-import { findLongestCardStreak, isCardNamePalindrome, isCardNamePalindromeV2 } from "../../hw1/index.js";
 
 export class MainPage {
     constructor(parent) {
@@ -21,6 +20,7 @@ export class MainPage {
                 foodCost: 0,
                 effect: "Накормленное животное не может быть атаковано хищником.",
                 img: "assets/cards_images/1.png",
+                matchLog: "11011101",
             },
             {
                 id: 2,
@@ -30,6 +30,7 @@ export class MainPage {
                 foodCost: 1,
                 effect: "Может быть атаковано только хищником со свойством Большой.",
                 img: "assets/cards_images/7.png",
+                matchLog: "1111100",
             },
             {
                 id: 3,
@@ -39,6 +40,7 @@ export class MainPage {
                 foodCost: 0,
                 effect: "В свою фазу питания животное считается накормленным. Нельзя использовать два хода подряд и в последний ход.",
                 img: "assets/cards_images/3.png",
+                matchLog: "10101011",
             },
             {
                 id: 4,
@@ -48,6 +50,7 @@ export class MainPage {
                 foodCost: 2,
                 effect: "Сыграть только на животное другого игрока.",
                 img: "assets/cards_images/2.png",
+                matchLog: "001110",
             },
             {
                 id: 5,
@@ -57,6 +60,7 @@ export class MainPage {
                 foodCost: 0,
                 effect: "Парное. Когда одно животное ест из кормовой базы - второе ест вне очереди.",
                 img: "assets/cards_images/9.png",
+                matchLog: "110110",
             },
             {
                 id: 6,
@@ -66,6 +70,7 @@ export class MainPage {
                 foodCost: 0,
                 effect: "Хищник, съевший это животное, погибает в фазу вымирания текущего хода.",
                 img: "assets/cards_images/6.png",
+                matchLog: "11111011",
             },
             {
                 id: 7,
@@ -75,6 +80,7 @@ export class MainPage {
                 foodCost: 0,
                 effect: "Парное. Когда одно животное ест - второе сразу получает одну синюю еду.",
                 img: "assets/cards_images/4.png",
+                matchLog: "0110110",
             },
             {
                 id: 8,
@@ -84,6 +90,7 @@ export class MainPage {
                 foodCost: 0,
                 effect: "Получает синюю еду, когда хищник съедает другое животное. Несовместимо со свойством Хищник.",
                 img: "assets/cards_images/8.png",
+                matchLog: "1001110",
             },
             {
                 id: 9,
@@ -93,6 +100,17 @@ export class MainPage {
                 foodCost: 0,
                 effect: "Парное. Одно животное защищает второе от хищников, но второе ест только после симбионта.",
                 img: "assets/cards_images/5.png",
+                matchLog: "111000111",
+            },
+            {
+                id: 10,
+                name: "Шалаш",
+                nameEn: "Shalash",
+                type: "Свойство",
+                foodCost: 0,
+                effect: "Демонстрационная карточка с палиндромным названием.",
+                img: "assets/cards_images/1.png",
+                matchLog: "1110011111",
             }
         ];
     }
@@ -137,36 +155,6 @@ export class MainPage {
         this.render();
     }
 
-    _initHw1Block() {
-        const matchInput = document.getElementById('hw1-match-input');
-        const streakEl   = document.getElementById('hw1-streak');
-        const palinInput = document.getElementById('hw1-palin-input');
-        const palinEl    = document.getElementById('hw1-palin-result');
-
-        const updateStreak = () => {
-            const val = matchInput.value.replace(/[^01]/g, '');
-            matchInput.value = val;
-            streakEl.textContent = findLongestCardStreak(val);
-        };
-
-        const updatePalin = () => {
-            const name = palinInput.value.trim();
-            if (!name) { palinEl.textContent = ''; return; }
-            const result1 = isCardNamePalindrome(name);
-            const result2 = isCardNamePalindromeV2(name);
-            palinEl.innerHTML = result1
-                ? `<span class="badge bg-success">палиндром</span>`
-                : `<span class="badge bg-secondary">не палиндром</span>`;
-        };
-
-        matchInput.addEventListener('input', updateStreak);
-        palinInput.addEventListener('input', updatePalin);
-
-        // начальный расчёт
-        updateStreak();
-        updatePalin();
-    }
-
     render() {
         this.parent.innerHTML = '';
 
@@ -188,35 +176,6 @@ export class MainPage {
             <button id="btn-add" class="btn btn-success mb-3">+ Добавить карту</button>
         `);
         document.getElementById('btn-add').addEventListener('click', () => this.clickAdd());
-
-        // ДЗ1: блок алгоритмов
-        this.pageRoot.insertAdjacentHTML('beforeend', `
-            <div class="card mb-3 p-3" style="background:#fff8f0; border-color:#c8a97a;">
-                <div class="row g-3 align-items-end">
-                    <div class="col-auto">
-                        <label class="form-label mb-1 fw-semibold" style="font-size:0.85em;">
-                            История партий (0 и 1):
-                        </label>
-                        <input id="hw1-match-input" class="form-control form-control-sm" style="width:180px;"
-                               maxlength="30" placeholder="напр. 11011101001" value="11011101001">
-                        <div class="mt-1" style="font-size:0.85em;">
-                            Макс. серия побед: <strong id="hw1-streak">3</strong>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <label class="form-label mb-1 fw-semibold" style="font-size:0.85em;">
-                            Проверка палиндрома:
-                        </label>
-                        <input id="hw1-palin-input" class="form-control form-control-sm" style="width:180px;"
-                               placeholder="введите слово" value="Норное">
-                        <div class="mt-1" style="font-size:0.85em;">
-                            <span id="hw1-palin-result"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `);
-        this._initHw1Block();
 
         // Список карточек
         this.pageRoot.insertAdjacentHTML('beforeend', `<div id="cards-list" class="cards-grid"></div>`);
