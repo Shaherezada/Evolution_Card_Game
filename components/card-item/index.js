@@ -1,3 +1,5 @@
+import { findLongestCardStreak, isCardNamePalindrome } from "../../hw1/index.js";
+
 export class CardItemComponent {
     constructor(parent) {
         this.parent = parent;
@@ -19,6 +21,29 @@ export class CardItemComponent {
         const foodBadge = data.foodCost > 0
             ? `<span class="badge bg-danger ms-1">+${data.foodCost} к еде</span>`
             : '';
+
+        // ДЗ1 — проверка названия карточки на палиндром
+        const isCardPalindrome = isCardNamePalindrome(data.name);
+        const palindromeBadge = isCardPalindrome
+            ? `<span class="evolution-badge evolution-badge-filled" title="Название — палиндром">🔄 палиндром</span>`
+            : `<span class="evolution-badge evolution-badge-outline" title="Название не палиндром">— не палиндром</span>`;
+
+        // ДЗ1 — длиннейшая серия побед карточки в партиях (matchLog = история: 1=победа, 0=поражение)
+        const cardMatchLog = data.matchLog || '';
+        const cardMaxStreak = findLongestCardStreak(cardMatchLog);
+        const highlightedMatchLog = cardMatchLog
+            .split('')
+            .map(ch => ch === '1'
+                ? `<span class="match-win">1</span>`
+                : `<span class="match-loss">0</span>`)
+            .join('');
+        const streakBlock = cardMatchLog
+            ? `<div class="card-streak-block" title="История партий карточки">
+                   <div class="card-streak-label">🏆 Серия побед: <strong>${cardMaxStreak}</strong></div>
+                   <div class="card-streak-log">${highlightedMatchLog}</div>
+               </div>`
+            : '';
+
         return `
             <div class="card evolution-card">
                 <img class="card-img-top"
@@ -27,6 +52,8 @@ export class CardItemComponent {
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${data.name} ${foodBadge}</h5>
                     <p class="card-text text-muted" style="font-size: 0.8em;">${data.type}</p>
+                    <div class="mb-2">${palindromeBadge}</div>
+                    ${streakBlock}
                     <div class="mt-auto d-flex gap-1 flex-wrap">
                         <button class="btn btn-sm btn-primary"
                                 id="btn-details-${data.id}"
