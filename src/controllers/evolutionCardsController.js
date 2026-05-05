@@ -8,7 +8,10 @@ const {
 
 function handleGetAllCards(req, res) {
     const cardNameFilter = req.query.name || '';
-    const cardList = getAllEvolutionCards(cardNameFilter);
+    const isPairedFilter = req.query.isPaired !== undefined
+        ? req.query.isPaired === 'true'
+        : undefined;
+    const cardList = getAllEvolutionCards(cardNameFilter, isPairedFilter);
     res.json(cardList);
 }
 

@@ -1,15 +1,18 @@
 const { readEvolutionCardsFromFile, writeEvolutionCardsToFile } = require('./cardFileService');
 
-function getAllEvolutionCards(cardNameFilter) {
-    const allCards = readEvolutionCardsFromFile();
+function getAllEvolutionCards(cardNameFilter, isPairedFilter) {
+    let cards = readEvolutionCardsFromFile();
     if (cardNameFilter) {
         const cardNameLower = cardNameFilter.toLowerCase();
-        return allCards.filter(card =>
+        cards = cards.filter(card =>
             card.name.toLowerCase().includes(cardNameLower) ||
             card.nameEn.toLowerCase().includes(cardNameLower)
         );
     }
-    return allCards;
+    if (isPairedFilter !== undefined) {
+        cards = cards.filter(card => card.isPaired === isPairedFilter);
+    }
+    return cards;
 }
 
 function getEvolutionCardById(cardId) {
