@@ -32,7 +32,7 @@ export class MainPage {
                 effect: "Может быть атаковано только хищником со свойством Большой.",
                 img: "assets/cards_images/7.png",
                 matchLog: "1111100",
-                model3d: "assets/models/black-bear.glb",
+                model3d: "assets/models/Dinosaur.glb",
             },
             {
                 id: 3,
@@ -65,7 +65,7 @@ export class MainPage {
                 effect: "Парное. Когда одно животное ест из кормовой базы - второе ест вне очереди.",
                 img: "assets/cards_images/9.png",
                 matchLog: "110110",
-                model3d: "assets/models/giraffe.glb",
+                model3d: "assets/models/Ant.glb",
             },
             {
                 id: 6,
@@ -98,7 +98,7 @@ export class MainPage {
                 effect: "Получает синюю еду, когда хищник съедает другое животное. Несовместимо со свойством Хищник.",
                 img: "assets/cards_images/8.png",
                 matchLog: "1001110",
-                model3d: "assets/models/mouse.glb",
+                model3d: "assets/models/Wolf.glb",
             },
             {
                 id: 9,
@@ -109,7 +109,7 @@ export class MainPage {
                 effect: "Парное. Одно животное защищает второе от хищников, но второе ест только после симбионта.",
                 img: "assets/cards_images/5.png",
                 matchLog: "111000111",
-                model3d: "assets/models/mouse.glb",
+                model3d: "assets/models/Crocodile.glb",
             },
             {
                 id: 10,
