@@ -14,7 +14,7 @@ export class FilterComponent {
     getHTML(activeType) {
         const types = ['Все', 'Свойство', 'Взаимодействие'];
         const buttons = types.map(t => `
-            <button class="btn ${activeType === t ? 'btn-primary' : 'btn-outline-secondary'} me-2"
+            <button class="btn ${activeType === t ? 'btn-primary' : 'btn-dark'} me-2"
                     data-filter="${t}">${t}</button>
         `).join('');
         return `<div class="mb-3">${buttons}</div>`;

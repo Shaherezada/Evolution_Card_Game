@@ -5,11 +5,18 @@
     <title>Эволюция — Карты</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="rightgames_style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
 </head>
 <body>
 <div id="root"></div>
 
-<!-- Bootstrap JS до main.js, чтобы bootstrap был доступен как глобальная переменная -->
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="main.js" type="module"></script>
 </body>

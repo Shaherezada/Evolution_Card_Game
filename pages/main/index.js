@@ -21,6 +21,7 @@ export class MainPage {
                 effect: "Накормленное животное не может быть атаковано хищником.",
                 img: "assets/cards_images/1.png",
                 matchLog: "11011101",
+                model3d: "assets/models/worm.glb",
             },
             {
                 id: 2,
@@ -31,6 +32,7 @@ export class MainPage {
                 effect: "Может быть атаковано только хищником со свойством Большой.",
                 img: "assets/cards_images/7.png",
                 matchLog: "1111100",
+                model3d: "assets/models/black-bear.glb",
             },
             {
                 id: 3,
@@ -41,6 +43,7 @@ export class MainPage {
                 effect: "В свою фазу питания животное считается накормленным. Нельзя использовать два хода подряд и в последний ход.",
                 img: "assets/cards_images/3.png",
                 matchLog: "10101011",
+                model3d: "assets/models/black-bear.glb",
             },
             {
                 id: 4,
@@ -51,6 +54,7 @@ export class MainPage {
                 effect: "Сыграть только на животное другого игрока.",
                 img: "assets/cards_images/2.png",
                 matchLog: "001110",
+                model3d: "assets/models/worm.glb",
             },
             {
                 id: 5,
@@ -61,6 +65,7 @@ export class MainPage {
                 effect: "Парное. Когда одно животное ест из кормовой базы - второе ест вне очереди.",
                 img: "assets/cards_images/9.png",
                 matchLog: "110110",
+                model3d: "assets/models/giraffe.glb",
             },
             {
                 id: 6,
@@ -71,6 +76,7 @@ export class MainPage {
                 effect: "Хищник, съевший это животное, погибает в фазу вымирания текущего хода.",
                 img: "assets/cards_images/6.png",
                 matchLog: "11111011",
+                model3d: "assets/models/salamander.glb",
             },
             {
                 id: 7,
@@ -81,6 +87,7 @@ export class MainPage {
                 effect: "Парное. Когда одно животное ест - второе сразу получает одну синюю еду.",
                 img: "assets/cards_images/4.png",
                 matchLog: "0110110",
+                model3d: "assets/models/giraffe.glb",
             },
             {
                 id: 8,
@@ -91,6 +98,7 @@ export class MainPage {
                 effect: "Получает синюю еду, когда хищник съедает другое животное. Несовместимо со свойством Хищник.",
                 img: "assets/cards_images/8.png",
                 matchLog: "1001110",
+                model3d: "assets/models/mouse.glb",
             },
             {
                 id: 9,
@@ -101,6 +109,7 @@ export class MainPage {
                 effect: "Парное. Одно животное защищает второе от хищников, но второе ест только после симбионта.",
                 img: "assets/cards_images/5.png",
                 matchLog: "111000111",
+                model3d: "assets/models/mouse.glb",
             },
             {
                 id: 10,
@@ -111,6 +120,7 @@ export class MainPage {
                 effect: "Демонстрационная карточка с палиндромным названием.",
                 img: "assets/cards_images/1.png",
                 matchLog: "1110011111",
+                model3d: "assets/models/salamander.glb",
             }
         ];
     }

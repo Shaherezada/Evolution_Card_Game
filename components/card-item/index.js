@@ -11,10 +11,6 @@ export class CardItemComponent {
 
         document.getElementById(`btn-delete-${data.id}`)
             .addEventListener('click', onDelete);
-
-        // Инициализация Bootstrap popover (вариант 5 — информер)
-        const popoverEl = document.getElementById(`popover-${data.id}`);
-        new bootstrap.Popover(popoverEl);
     }
 
     getHTML(data) {
@@ -25,8 +21,8 @@ export class CardItemComponent {
         // ДЗ1 — проверка названия карточки на палиндром
         const isCardPalindrome = isCardNamePalindrome(data.name);
         const palindromeBadge = isCardPalindrome
-            ? `<span class="evolution-badge evolution-badge-filled" title="Название — палиндром">🔄 палиндром</span>`
-            : `<span class="evolution-badge evolution-badge-outline" title="Название не палиндром">— не палиндром</span>`;
+            ? `<span class="evolution-badge evolution-badge-filled" title="Название — палиндром">палиндром</span>`
+            : `<span class="evolution-badge evolution-badge-outline" title="Название не палиндром">не палиндром</span>`;
 
         // ДЗ1 — длиннейшая серия побед карточки в партиях (matchLog = история: 1=победа, 0=поражение)
         const cardMatchLog = data.matchLog || '';
@@ -39,7 +35,7 @@ export class CardItemComponent {
             .join('');
         const streakBlock = cardMatchLog
             ? `<div class="card-streak-block" title="История партий карточки">
-                   <div class="card-streak-label">🏆 Серия побед: <strong>${cardMaxStreak}</strong></div>
+                   <div class="card-streak-label">Серия побед: <strong>${cardMaxStreak}</strong></div>
                    <div class="card-streak-log">${highlightedMatchLog}</div>
                </div>`
             : '';
@@ -58,16 +54,9 @@ export class CardItemComponent {
                         <button class="btn btn-sm btn-primary"
                                 id="btn-details-${data.id}"
                                 data-id="${data.id}">Подробнее</button>
-                        <button class="btn btn-sm btn-outline-danger"
+                        <button class="btn btn-sm btn-danger"
                                 id="btn-delete-${data.id}"
-                                data-id="${data.id}">✕</button>
-                        <button class="btn btn-sm btn-outline-secondary"
-                                id="popover-${data.id}"
-                                data-bs-toggle="popover"
-                                data-bs-trigger="hover focus"
-                                data-bs-placement="top"
-                                data-bs-content="${data.effect}"
-                                title="${data.name}">?</button>
+                                data-id="${data.id}">X</button>
                     </div>
                 </div>
             </div>
