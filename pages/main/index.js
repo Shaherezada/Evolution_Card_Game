@@ -21,7 +21,7 @@ export class MainPage {
                 effect: "Накормленное животное не может быть атаковано хищником.",
                 img: "assets/cards_images/1.png",
                 matchLog: "11011101",
-                model3d: "assets/models/worm.glb",
+                model3d: "assets/models/mouse.glb",
             },
             {
                 id: 2,
@@ -120,7 +120,7 @@ export class MainPage {
                 effect: "Демонстрационная карточка с палиндромным названием.",
                 img: "assets/cards_images/1.png",
                 matchLog: "1110011111",
-                model3d: "assets/models/salamander.glb",
+                model3d: "assets/models/mouse.glb",
             }
         ];
     }
