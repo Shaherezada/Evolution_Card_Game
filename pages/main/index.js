@@ -87,7 +87,7 @@ export class MainPage {
                 effect: "Парное. Когда одно животное ест - второе сразу получает одну синюю еду.",
                 img: "assets/cards_images/4.png",
                 matchLog: "0110110",
-                model3d: "assets/models/giraffe.glb",
+                model3d: "assets/models/salamander.glb",
             },
             {
                 id: 8,
