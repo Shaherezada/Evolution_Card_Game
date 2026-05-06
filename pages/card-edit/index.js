@@ -7,7 +7,7 @@ import { evolutionCardUrls } from "../../modules/evolutionCardUrls.js";
 export class CardEditPage {
     /**
      * @param {HTMLElement} parent
-     * @param {number|null} cardId  null — режим добавления, число — режим редактирования
+     * @param {number|null} cardId  null - режим добавления, число - режим редактирования
      * @param {function}    onBack
      */
     constructor(parent, cardId, onBack) {
@@ -26,10 +26,6 @@ export class CardEditPage {
         return `
             <div id="edit-page" class="container py-4">
                 <h3 class="mb-3">${title}</h3>
-                <p class="text-muted" style="font-size:0.9em;">
-                    Кнопка «Сохранить» появится в лабораторной №6.
-                    Сейчас можно только заполнить поля.
-                </p>
             </div>
         `;
     }

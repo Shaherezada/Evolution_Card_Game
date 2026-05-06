@@ -41,9 +41,6 @@ export class CardEditFormComponent {
                     <label class="form-label">Эффект</label>
                     <textarea name="effect" class="form-control" rows="3">${v(card.effect)}</textarea>
                 </div>
-                <p class="text-muted" style="font-size:0.85em;">
-                    Кнопка «Сохранить» появится в ЛР №6.
-                </p>
             </form>
         `;
     }
