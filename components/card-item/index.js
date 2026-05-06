@@ -5,12 +5,15 @@ export class CardItemComponent {
         this.parent = parent;
     }
 
-    addListeners(data, onDetails, onDelete) {
+    addListeners(data, onDetails, onDelete, onEdit) {
         document.getElementById(`btn-details-${data.id}`)
             .addEventListener('click', onDetails);
 
         document.getElementById(`btn-delete-${data.id}`)
             .addEventListener('click', onDelete);
+
+        const editBtn = document.getElementById(`btn-edit-${data.id}`);
+        if (editBtn && onEdit) editBtn.addEventListener('click', onEdit);
     }
 
     getHTML(data) {
@@ -18,13 +21,13 @@ export class CardItemComponent {
             ? `<span class="badge bg-danger ms-1">+${data.foodCost} к еде</span>`
             : '';
 
-        // ДЗ1 — проверка названия карточки на палиндром
+        // ДЗ1 — палиндром
         const isCardPalindrome = isCardNamePalindrome(data.name);
         const palindromeBadge = isCardPalindrome
             ? `<span class="evolution-badge evolution-badge-filled" title="Название — палиндром">палиндром</span>`
             : `<span class="evolution-badge evolution-badge-outline" title="Название не палиндром">не палиндром</span>`;
 
-        // ДЗ1 — длиннейшая серия побед карточки в партиях (matchLog = история: 1=победа, 0=поражение)
+        // ДЗ1 — серия побед
         const cardMatchLog = data.matchLog || '';
         const cardMaxStreak = findLongestCardStreak(cardMatchLog);
         const highlightedMatchLog = cardMatchLog
@@ -54,6 +57,9 @@ export class CardItemComponent {
                         <button class="btn btn-sm btn-primary"
                                 id="btn-details-${data.id}"
                                 data-id="${data.id}">Подробнее</button>
+                        <button class="btn btn-sm btn-warning"
+                                id="btn-edit-${data.id}"
+                                data-id="${data.id}">Редактировать</button>
                         <button class="btn btn-sm btn-danger"
                                 id="btn-delete-${data.id}"
                                 data-id="${data.id}">X</button>
@@ -63,8 +69,8 @@ export class CardItemComponent {
         `;
     }
 
-    render(data, onDetails, onDelete) {
+    render(data, onDetails, onDelete, onEdit) {
         this.parent.insertAdjacentHTML('beforeend', this.getHTML(data));
-        this.addListeners(data, onDetails, onDelete);
+        this.addListeners(data, onDetails, onDelete, onEdit);
     }
 }
