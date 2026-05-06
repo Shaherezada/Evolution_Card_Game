@@ -1,5 +1,9 @@
 node_modules/
 package-lock.json
 postman/
+
+# Vite build output — кладётся в ветку lab4-expressjs как public/
+public/
+dist/
 .DS_Store
 Thumbs.db

@@ -4,9 +4,9 @@ import { CardItemComponent } from "../../components/card-item/index.js";
 import { CardDetailPage }   from "../card-detail/index.js";
 import { CardEditPage }     from "../card-edit/index.js";
 
-import { ajax }                    from "../../modules/ajax.js";
-import { evolutionCardUrls }       from "../../modules/evolutionCardUrls.js";
-import { decorateEvolutionCard }   from "../../modules/evolutionCardPresentation.js";
+import { api }                    from "../../modules/api.js";
+import { evolutionCardUrls }      from "../../modules/evolutionCardUrls.js";
+import { decorateEvolutionCard }  from "../../modules/evolutionCardPresentation.js";
 
 export class MainPage {
     constructor(parent) {
@@ -30,19 +30,17 @@ export class MainPage {
     }
 
     /**
-     * Загрузка карточек через AJAX. Имя — query-параметр на бэк.
+     * Загрузка карточек через fetch (async/await).
      */
-    loadEvolutionCards() {
-        const url = evolutionCardUrls.getEvolutionCards(this.nameQuery);
-        ajax.get(url, (data, status) => {
-            if (status !== 200 || !Array.isArray(data)) {
-                console.error('Не удалось получить карточки:', status, data);
-                this.cards = [];
-            } else {
-                this.cards = data.map(decorateEvolutionCard);
-            }
-            this.renderCardsList();
-        });
+    async loadEvolutionCards() {
+        try {
+            const data = await api.get(evolutionCardUrls.getEvolutionCards(this.nameQuery));
+            this.cards = Array.isArray(data) ? data.map(decorateEvolutionCard) : [];
+        } catch (err) {
+            console.error('Не удалось получить карточки:', err);
+            this.cards = [];
+        }
+        this.renderCardsList();
     }
 
     clickDetails(e) {
@@ -57,20 +55,17 @@ export class MainPage {
         editPage.render();
     }
 
-    clickDelete(e) {
+    async clickDelete(e) {
         const id = parseInt(e.target.dataset.id);
-        const url = evolutionCardUrls.removeEvolutionCardById(id);
-        ajax.delete(url, (data, status) => {
-            if (status === 200 || status === 204) {
-                this.loadEvolutionCards();
-            } else {
-                console.error('Ошибка удаления карточки:', status, data);
-            }
-        });
+        try {
+            await api.delete(evolutionCardUrls.removeEvolutionCardById(id));
+            await this.loadEvolutionCards();
+        } catch (err) {
+            console.error('Ошибка удаления карточки:', err);
+        }
     }
 
     clickAdd() {
-        // В лабе 5 кнопка ведёт на пустую форму добавления (без сохранения).
         const editPage = new CardEditPage(this.parent, null, () => this.render());
         editPage.render();
     }
@@ -103,7 +98,6 @@ export class MainPage {
     render() {
         this.parent.innerHTML = '';
 
-        // Хедер — кнопка «Домой» сбрасывает фильтр и поиск
         const header = new HeaderComponent(this.parent);
         header.render(() => {
             this.activeFilter = 'Все';
@@ -124,14 +118,14 @@ export class MainPage {
                        style="max-width: 360px;">
             </div>
         `);
-        const queryInput = document.getElementById('card-name-query');
-        queryInput.addEventListener('input', e => this.onNameQueryChange(e.target.value));
+        document.getElementById('card-name-query')
+            .addEventListener('input', e => this.onNameQueryChange(e.target.value));
 
         // Фильтр по типу (клиентский)
         const filter = new FilterComponent(this.pageRoot);
         filter.render(this.activeFilter, type => this.clickFilter(type));
 
-        // Кнопка добавления (открывает страницу добавления — без кнопки Сохранить)
+        // Кнопка добавления
         this.pageRoot.insertAdjacentHTML('beforeend', `
             <button id="btn-add" class="btn btn-success mb-3">+ Добавить карту</button>
         `);
@@ -140,7 +134,6 @@ export class MainPage {
         // Список карточек
         this.pageRoot.insertAdjacentHTML('beforeend', `<div id="cards-list" class="cards-grid"></div>`);
 
-        // Загружаем карточки через AJAX
         this.loadEvolutionCards();
     }
 }

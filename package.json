@@ -1,15 +1,21 @@
 {
   "name": "evolution-cards",
   "version": "1.0.0",
-  "description": "Карточная игра Эволюция — каталог карт",
+  "description": "Карточная игра Эволюция — каталог карт (ЛР №6, fetch + Vite)",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev":     "vite",
+    "build":   "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.3.8"
+    "bootstrap": "^5.3.8",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
   }
 }
